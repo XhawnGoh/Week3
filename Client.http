@@ -1,0 +1,17 @@
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "Username":"Xhawn Goh",
+    "Password":"Gjx666",
+    "Secret": "DiuDiuDiu"
+}
+
+###分割线
+GET http://localhost:3000/bye
+
+###
+GET http://localhost:3000
+
+###
+POST http://localhost:3000/register
