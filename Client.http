@@ -2,9 +2,8 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "Username":"Xhawn Goh",
-    "Password":"Gjx666",
-    "Secret": "DiuDiuDiu"
+    "username":"Soo",
+    "password":"123456"
 }
 
 ###分割线
@@ -15,3 +14,11 @@ GET http://localhost:3000
 
 ###
 POST http://localhost:3000/register
+Content-Type: application/jason
+
+{
+    "username":"Jia Xuen",
+    "password":"112233",
+    "name":"XhawnGG",
+    "email":"GG@hotmail.com"
+}
