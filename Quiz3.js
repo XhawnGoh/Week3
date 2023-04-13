@@ -2,6 +2,8 @@ const express = require('express')//right click,
 const app = express()
 const port = 3000
 
+const jwt = require('jsonwebtoken');
+
 app.use(express.json())// NO1 (app use 要放在第一个)
 
 
@@ -22,7 +24,7 @@ app.get('/', (req, res) => {//当看到/就发 Hi Goh
   );
 });*/
 
-app.get('/bye', (req, res) => {//当看到/bye就发 No Hi
+app.get('/bye', verifyToken, (req, res) => {//当看到/bye就发 No Hi
     res.send('No Hi')
   })
 
@@ -38,14 +40,38 @@ app.get('/bye', (req, res) => {//当看到/bye就发 No Hi
 
   })
 
+function generateToken(userData){
+  const token = jwt.sign(
+    userData,
+    'inipassword',
+    { expiresIn: 1000 }//token will expire in 1000 sec
+  );
+  return token
+}
 
+function verifyToken(req,res,next){
+    let header = req.headers.authorization
+    console.log(header)
+
+    let token = header.split(' ')[1]
+
+    jwt.verify(token,'inipassword',function(err,decoded){
+      if(err){
+        res.send("Invalid Token")
+      }
+
+      req.user = decoded
+      next()
+    });
+}
   
   app.post('/login', (req, res) => { 
     console.log(req.body)
 
     let result = login(req.body.username, req.body.password)
 
-    res.send(result)
+    let token = generateToken(result)
+    res.send(token)
 
   })
 
