@@ -1,4 +1,4 @@
-let dbUser =[//一个叫dbUser 的array
+/*let dbUser =[//一个叫dbUser 的array
     {
         username: "Soo",
         password: "123456",
@@ -113,22 +113,30 @@ app.post('/login', (req, res) => {
   res.send(token)
 
 })
-
+*/
 
 
 
 //////////
-/*
+
+const express = require('express')//right click, 
+const app = express()
+const port = 3000
+
 const jwt = require('jsonwebtoken');
 
 app.use(express.json())// NO1 (app use 要放在第一个)
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})//ctrl C to kill server
 
 
 app.get('/', (req, res) => {//当看到/就发 Hi Goh
   res.send('Hi Goh')
 })
 
-/*app.post('/register', (req, res) => {
+app.post('/register', (req, res) => {
   let data = req.body
   res.send(
       register(
@@ -146,7 +154,7 @@ app.get('/bye', verifyToken, (req, res) => {//当看到/bye就发 No Hi
   })
 
 //用一般的browser会404 
-  app.post('/register', (req, res) => {// bcs browser 的address bar一般都是get 不能post（因为是address bar是拿data 是get 
+app.post('/register', (req, res) => {// bcs browser 的address bar一般都是get 不能post（因为是address bar是拿data 是get 
     
     let result = register (req.body.username,
        req.body.password, 
@@ -155,15 +163,14 @@ app.get('/bye', verifyToken, (req, res) => {//当看到/bye就发 No Hi
 
     res.send(result)// press send request at  file.http to simulate
 
-  })
+})
 
 function generateToken(userData){
-  const token = jwt.sign(
+  return jwt.sign(
     userData,
-    'inipassword',
-    { expiresIn: 1000 }//token will expire in 1000 sec
+    "inipassword",
+    { expiresIn: 10000 }//token will expire in 10000 sec
   );
-  return token
 }
 
 function verifyToken(req,res,next){
@@ -176,13 +183,13 @@ function verifyToken(req,res,next){
       if(err){
         res.send("Invalid Token")
       }
-
+      //console.log(decoded);
       req.user = decoded
       next()
     });
 }
   
-  app.post('/login', (req, res) => { 
+app.post('/login', (req, res) => { 
     console.log(req.body)
 
     let result = login(req.body.username, req.body.password)
@@ -190,11 +197,7 @@ function verifyToken(req,res,next){
     let token = generateToken(result)
     res.send(token)
 
-  })
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})//ctrl C to kill server
+})
 
 function login(requsername,reqpassword){// req是input的data
   //=> 是进去array的element 会存在箭头前面 的意思(类似function？)
@@ -220,7 +223,7 @@ function register(requsername,reqpassword,reqname,reqemail){//增加新data
   })
 }
 
-/*function register(newusername, newpassword, newname, newemail) {
+function register(newusername, newpassword, newname, newemail) {
   //TODO: Check if username exist
 
   let regmatch = dbUser.find(element =>
@@ -261,4 +264,3 @@ let dbUser =[//一个叫dbUser 的array
     },
 ]
 
-*/

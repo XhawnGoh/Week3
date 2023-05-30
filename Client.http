@@ -30,11 +30,11 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "username":"soo",
-    "password":"123456",
+    "username":"Soo",
+    "password":"123456"
 }
 
 ###
 
 GET http://localhost:3000/bye
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNvbyIsInBhc3N3b3JkIjoiMTIzNDU2IiwibmFtZSI6IllvdSBHdWFuIiwiZW1haWwiOiJTb29Zb3VHdWFuQGdhbWlsLmNvbSIsImlhdCI6MTY4MTM3MTU4NCwiZXhwIjoxNjgxMzcyNTg0fQ.yAk1ljMCvhyoiF32FBHwt6nfyXOEyaSbqS7L5WiZbpc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNvbyIsInBhc3N3b3JkIjoiMTIzNDU2IiwibmFtZSI6IllvdSBHdWFuIiwiZW1haWwiOiJTb29Zb3VHdWFuQGdhbWlsLmNvbSIsImlhdCI6MTY4NTQ3MTY4MywiZXhwIjoxNjg1NDgxNjgzfQ.RA0voSgskxfFDzmk4mgR6pb54-u0XmXfl2xyOehAarM
