@@ -136,7 +136,7 @@ app.get('/', (req, res) => {//当看到/就发 Hi Goh
   res.send('Hi Goh')
 })
 
-app.post('/register', (req, res) => {
+/*app.post('/register', (req, res) => {
   let data = req.body
   res.send(
       register(
@@ -147,7 +147,7 @@ app.post('/register', (req, res) => {
       )
 
   );
-});             //(add ending for comment)
+});*/             //(add ending for comment)
 
 app.get('/bye', verifyToken, (req, res) => {//当看到/bye就发 No Hi
     res.send('No Hi')
@@ -164,6 +164,37 @@ app.post('/register', (req, res) => {// bcs browser 的address bar一般都是ge
     res.send(result)// press send request at  file.http to simulate
 
 })
+
+function register(newusername, newpassword, newname, newemail) {
+  //TODO: Check if username exist
+
+  let regmatch = dbUser.find(element =>
+      element.username == newusername
+      )
+      if (regmatch) {
+          return "Username is used"
+      } else {
+
+      dbUser.push({
+          username: newusername,
+          password: newpassword,
+          name: newname,
+          email: newemail,
+      })
+      return "Registration success"
+  }
+}             //(add ending for comment)
+
+
+//简略版本的 register
+/*function register(requsername,reqpassword,reqname,reqemail){//增加新data
+  dbUser.push({
+      username: requsername,
+      password: reqpassword,
+      name: reqname,
+      email: reqemail
+  })
+}*/
 
 function generateToken(userData){
   return jwt.sign(
@@ -214,34 +245,6 @@ return"Invalid Password"
 }
 
 
-function register(requsername,reqpassword,reqname,reqemail){//增加新data
-  dbUser.push({
-      username: requsername,
-      password: reqpassword,
-      name: reqname,
-      email: reqemail
-  })
-}
-
-function register(newusername, newpassword, newname, newemail) {
-  //TODO: Check if username exist
-
-  let regmatch = dbUser.find(element =>
-      element.username == newusername
-      )
-      if (regmatch) {
-          return "Username is used"
-      } else {
-
-      dbUser.push({
-          username: newusername,
-          password: newpassword,
-          name: newname,
-          email: newemail,
-      })
-      return "Registration success"
-  }
-}             //(add ending for comment)
 
 let dbUser =[//一个叫dbUser 的array
     {
